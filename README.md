@@ -1,2 +1,2 @@
-# singo2
+# Gingo
 Scaffold of Gin Web Project
