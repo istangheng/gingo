@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gingo/common"
+	"gingo/config"
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
@@ -9,8 +9,9 @@ import (
 
 // main 入口
 func main() {
-	db := common.InitDB()
-	defer db.Close()
+	// 初始化配置
+	config.Init()
+
 	r := gin.Default()
 	r = CollectRoute(r)
 	r.Run()

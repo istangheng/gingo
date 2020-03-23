@@ -9,7 +9,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-// DB 注释
+// DB 实例
 var DB *gorm.DB
 
 // InitDB 初始化数据库
