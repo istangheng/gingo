@@ -19,7 +19,7 @@ func Register(ctx *gin.Context) {
 	DB := common.GetDB()
 	// 获取参数
 	var requestUser = model.User{}
-	ctx.Bind(&requestUser)
+	ctx.ShouldBind(&requestUser)
 	name := requestUser.Name
 	telephone := requestUser.Telephone
 	password := requestUser.Password
