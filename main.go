@@ -2,6 +2,7 @@ package main
 
 import (
 	"gingo/config"
+	"gingo/router"
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
@@ -13,6 +14,6 @@ func main() {
 	config.Init()
 
 	r := gin.Default()
-	r = CollectRoute(r)
+	r = router.CollectRoute(r)
 	r.Run()
 }
