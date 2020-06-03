@@ -1,12 +1,10 @@
 package common
 
 import (
+	"gingo/config"
 	"gingo/model"
-	"log"
-	"os"
 
 	"github.com/jinzhu/gorm"
-	"github.com/joho/godotenv"
 )
 
 // DB 实例
@@ -14,13 +12,8 @@ var DB *gorm.DB
 
 // InitDB 初始化数据库
 func InitDB() *gorm.DB {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-
-	mysqlDSN := os.Getenv("MYSQL_DSN")
-	db, err := gorm.Open("mysql", mysqlDSN)
+	conf := config.Conf
+	db, err := gorm.Open("mysql", conf.MysqlDsn)
 	if err != nil {
 		panic("failed to connect database,err:" + err.Error())
 	}

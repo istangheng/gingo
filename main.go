@@ -1,6 +1,7 @@
 package main
 
 import (
+	"gingo/common"
 	"gingo/config"
 	"gingo/router"
 
@@ -8,12 +9,16 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
+func init() {
+	common.InitDB()
+	common.InitRedis()
+}
+
 // main 入口
 func main() {
-	// 初始化配置
-	config.Init()
+	conf := config.Conf
 
 	r := gin.Default()
 	r = router.CollectRoute(r)
-	r.Run()
+	r.Run(conf.Server.Port)
 }

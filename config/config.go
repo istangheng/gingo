@@ -1,11 +1,49 @@
 package config
 
-import "gingo/common"
+import (
+	"fmt"
+	"io/ioutil"
+	"log"
 
-// Init 初始化配置
-func Init() {
-	common.InitDB()
-	// defer db.Close()
+	"gopkg.in/yaml.v2"
+)
 
-	common.InitRedis()
+// Conf 全局
+var Conf *Config
+
+// Config 解析配置文件
+type Config struct {
+	Server struct {
+		Host string `yaml:"host"`
+		Port string `yaml:"port"`
+	} `yaml:"server"`
+	SessionSecret string `yaml:"session_secret"`
+	GinMode       string `yaml:"gin_mode"`
+	LogLevel      string `yaml:"log_level"`
+	MysqlDsn      string `yaml:"mysql_dsn"`
+	Redis         struct {
+		Addr string `yaml:"addr"`
+		Pass string `yaml:"pass"`
+		Db   string `yaml:"db"`
+	} `yaml:"redis"`
+	Es struct {
+		URL  string `yaml:"url"`
+		User string `yaml:"user"`
+		Pass string `yaml:"pass"`
+	} `yaml:"es"`
+}
+
+func init() {
+	file, err := ioutil.ReadFile("./conf/conf.yaml")
+	if err != nil {
+		fmt.Printf("%s\n", err)
+		panic(err)
+	}
+
+	var c Config
+	err = yaml.Unmarshal(file, &c)
+	if err != nil {
+		log.Fatalf("cannot unmarshal data: %v", err)
+	}
+	Conf = &c
 }
