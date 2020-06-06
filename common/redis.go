@@ -2,27 +2,26 @@ package common
 
 import (
 	"gingo/config"
+	"time"
 
-	"github.com/go-redis/redis"
+	"github.com/garyburd/redigo/redis"
 )
 
-// RedisClient 实例
-var RedisClient *redis.Client
+// Pool redis conn pool
+var Pool *redis.Pool
 
-// InitRedis 初始化Redis
-func InitRedis() {
+// InitRedisPool 初始化redis conn pool
+func InitRedisPool() {
 	conf := config.Conf
-
-	client := redis.NewClient(&redis.Options{
-		Addr:     conf.Redis.Addr,
-		Password: conf.Redis.Pass,
-		DB:       0, // use default DB
-	})
-
-	_, err := client.Ping().Result()
-	if err != nil {
-		panic("failed to connect redis,err:" + err.Error())
+	pool := &redis.Pool{
+		MaxActive:   500,
+		MaxIdle:     3,
+		IdleTimeout: 240 * time.Second,
+		Dial:        func() (redis.Conn, error) { return redis.Dial("tcp", conf.Redis.Addr) },
 	}
-
-	RedisClient = client
+	Pool = pool
 }
+
+// 获取连接
+// conn := cache.Pool.Get()
+// defer conn.Close()

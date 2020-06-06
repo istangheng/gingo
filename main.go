@@ -11,7 +11,7 @@ import (
 
 func init() {
 	common.InitDB()
-	common.InitRedis()
+	common.InitRedisPool()
 }
 
 // main 入口
