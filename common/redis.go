@@ -14,7 +14,6 @@ var Pool *redis.Pool
 func InitRedisPool() {
 	conf := config.Conf
 	pool := &redis.Pool{
-		MaxActive:   500,
 		MaxIdle:     3,
 		IdleTimeout: 240 * time.Second,
 		Dial:        func() (redis.Conn, error) { return redis.Dial("tcp", conf.Redis.Addr) },

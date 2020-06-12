@@ -34,7 +34,7 @@ type Config struct {
 }
 
 func init() {
-	file, err := ioutil.ReadFile("./conf/conf.yaml")
+	file, err := ioutil.ReadFile("./conf.yaml")
 	if err != nil {
 		fmt.Printf("%s\n", err)
 		panic(err)
