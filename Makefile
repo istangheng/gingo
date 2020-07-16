@@ -1,15 +1,13 @@
 .PHONY : test
 
 CURDIR=$(shell pwd)
-DOCKER_TARGET= hub.deepin.com/dcmc/cms
-DOCKER_BUILDER_TARGET=$(DOCKER_TARGET).builder
+DOCKER_TARGET= hub.docker.com/tangheng1995/gingo/server
 TARGET=gingo_server
 
 build:
-	go build -o $(CURDIR)/$(TARGET) main.go
+	go build -mod vendor -v -o $(CURDIR)/$(TARGET) cmd/main.go
 
 run: build
-	[ -f conf.yaml ] || cp conf.example.yaml conf.yaml
 	SERVER_ROOT=$(CURDIR) $(CURDIR)/$(TARGET)
 
 docker-build:
@@ -17,20 +15,21 @@ docker-build:
 	docker image inspect alpine >/dev/null || docker pull alpine
 
 docker:
-	DOCKER_BUILDKIT=1 docker build -f Dockerfile -t $(DOCKER_TARGET) .
-	DOCKER_BUILDKIT=1 docker build -f Dockerfile -t $(DOCKER_TARGET):dev .
+	DOCKER_BUILDKIT=1 docker build -f deployments/Dockerfile -t $(DOCKER_TARGET) .
 
 docker-release:
 	docker push $(DOCKER_TARGET)
-	docker push $(DOCKER_TARGET):dev
 docker-push:
 	docker push $(DOCKER_TARGET)
 
-migrate:
-	echo SERVER_ROOT=$(CURDIR)
-
 test:
-	echo cd $(CURDIR)/test; SERVER_ROOT=$(CURDIR) ginkgo -v -r -cover
+	go test $(CURDIR)/test -v -coverprofile=coverage.out -covermode=count -coverpkg=./...
 
-clean:
-	rm $(CURDIR)/$(TARGET)
+coverage: test
+	find . -name "coverage.out.*" -exec tail +2 {} >> coverage.out \;
+	go tool cover -html coverage.out -o coverage.html
+	go tool cover -func=coverage.out
+	golangci-lint run -E=golint --out-format checkstyle ./... > report.xml
+
+analyze: coverage
+	sonar-scanner -X
