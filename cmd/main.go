@@ -13,6 +13,7 @@ func init() {
 	config.InitConf()
 	initialize.InitDB()
 	initialize.InitRedisPool()
+	initialize.InitCron()
 }
 
 // main 入口
