@@ -6,9 +6,7 @@ ADD . /gingo
 
 WORKDIR /gingo
 
-RUN go env -w GO111MODULE=on
-
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -mod vendor -v -o gingo_server cmd/main.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -o gingo_server cmd/main.go
 
 FROM alpine:3.7
 
@@ -22,7 +20,7 @@ WORKDIR /www
 ENV PATH="/www:${PATH}"
 
 COPY --from=build /gingo/gingo_server /www/gingo_server
-COPY --from=build configs/conf.yaml /www/configs/conf.yaml
+COPY --from=build /gingo/configs/conf.yaml /www/configs/conf.yaml
 
 RUN chmod +x /www/gingo_server
 
