@@ -1,7 +1,7 @@
 .PHONY : test
 
 CURDIR=$(shell pwd)
-DOCKER_TARGET= hub.docker.com/tangheng1995/gingo/server
+DOCKER_TARGET= registry.cn-hongkong.aliyuncs.com/tangheng1995/gingo:latest
 TARGET=gingo_server
 
 build:
