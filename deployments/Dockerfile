@@ -6,7 +6,7 @@ ADD . /gingo
 
 WORKDIR /gingo
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o gingo_server cmd/main.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -mod vendor -v -o gingo_server cmd/main.go
 
 FROM alpine:3.7
 
