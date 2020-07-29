@@ -14,6 +14,7 @@ func init() {
 	initialize.InitDB()
 	initialize.InitRedisPool()
 	initialize.InitCron()
+	initialize.InitRbac()
 }
 
 // main 入口

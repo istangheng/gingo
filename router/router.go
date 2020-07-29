@@ -13,5 +13,6 @@ func CollectRoute(r *gin.Engine) *gin.Engine {
 	r.POST("/api/auth/register", api.Register)
 	r.POST("/api/auth/login", api.Login)
 	r.GET("/api/auth/info", middleware.AuthMiddleware(), api.Info)
+	r.GET("/ping", middleware.AuthMiddleware(), middleware.RbacMiddleware(), api.Ping)
 	return r
 }

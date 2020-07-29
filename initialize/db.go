@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"gingo/internal/config"
 	"gingo/model"
+	gormadapter "github.com/casbin/gorm-adapter/v2"
 	"github.com/jinzhu/gorm"
 )
 
@@ -19,6 +20,7 @@ func InitDB() *gorm.DB {
 		panic("failed to connect database,err:" + err.Error())
 	}
 
+	db.AutoMigrate(&gormadapter.CasbinRule{})
 	db.AutoMigrate(&model.User{})
 	DB = db
 	return db

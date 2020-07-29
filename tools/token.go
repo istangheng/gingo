@@ -11,6 +11,7 @@ var jwtKey = []byte("jwt_key")
 // Claims jwt
 type Claims struct {
 	UserID uint
+	Role   string
 	jwt.StandardClaims
 }
 
@@ -19,6 +20,7 @@ func ReleaseToken(user model.User) (string, error) {
 	expiresTime := time.Now().Add(7 * 24 * time.Hour)
 	claims := &Claims{
 		UserID: user.ID,
+		Role:   user.Role,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expiresTime.Unix(),
 			IssuedAt:  time.Now().Unix(),
