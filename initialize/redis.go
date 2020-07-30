@@ -15,11 +15,37 @@ func InitRedisPool() {
 	pool := &redis.Pool{
 		MaxIdle:     3,
 		IdleTimeout: 240 * time.Second,
-		Dial:        func() (redis.Conn, error) { return redis.Dial("tcp", conf.Redis.Addr) },
+		Dial: func() (redis.Conn, error) {
+			c, err := redis.Dial("tcp", conf.Redis.Addr)
+			if err != nil {
+				return nil, err
+			}
+			if _, err := c.Do("AUTH", conf.Redis.Pass); err != nil {
+				c.Close()
+				return nil, err
+			}
+			if _, err := c.Do("SELECT", conf.Redis.Db); err != nil {
+				c.Close()
+				return nil, err
+			}
+			return c, nil
+		},
 	}
 	Pool = pool
 }
 
 // 获取连接
-// conn := cache.Pool.Get()
+// conn := Pool.Get()
 // defer conn.Close()
+
+// SetPing 测试
+func SetPing() (result string, err error) {
+	conn := Pool.Get()
+	defer conn.Close()
+
+	n, err := conn.Do("SET", "ping", "pong")
+	if err != nil {
+		return "", err
+	}
+	return n.(string), nil
+}
