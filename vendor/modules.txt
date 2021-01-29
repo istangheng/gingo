@@ -1,5 +1,14 @@
 # github.com/Knetic/govaluate v3.0.1-0.20171022003610-9aa49832a739+incompatible
 github.com/Knetic/govaluate
+# github.com/KyleBanks/depth v1.2.1
+github.com/KyleBanks/depth
+# github.com/PuerkitoBio/purell v1.1.1
+github.com/PuerkitoBio/purell
+# github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578
+github.com/PuerkitoBio/urlesc
+# github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
+github.com/alecthomas/template
+github.com/alecthomas/template/parse
 # github.com/casbin/casbin/v2 v2.8.6
 github.com/casbin/casbin/v2
 github.com/casbin/casbin/v2/config
@@ -30,6 +39,14 @@ github.com/gin-gonic/gin
 github.com/gin-gonic/gin/binding
 github.com/gin-gonic/gin/internal/json
 github.com/gin-gonic/gin/render
+# github.com/go-openapi/jsonpointer v0.19.5
+github.com/go-openapi/jsonpointer
+# github.com/go-openapi/jsonreference v0.19.5
+github.com/go-openapi/jsonreference
+# github.com/go-openapi/spec v0.20.2
+github.com/go-openapi/spec
+# github.com/go-openapi/swag v0.19.13
+github.com/go-openapi/swag
 # github.com/go-playground/locales v0.12.1
 github.com/go-playground/locales
 github.com/go-playground/locales/currency
@@ -43,6 +60,8 @@ github.com/golang/protobuf/proto
 github.com/jinzhu/gorm
 # github.com/jinzhu/inflection v1.0.0
 github.com/jinzhu/inflection
+# github.com/josharian/intern v1.0.0
+github.com/josharian/intern
 # github.com/json-iterator/go v1.1.9
 github.com/json-iterator/go
 # github.com/leodido/go-urn v1.2.0
@@ -51,6 +70,10 @@ github.com/leodido/go-urn
 github.com/lib/pq
 github.com/lib/pq/oid
 github.com/lib/pq/scram
+# github.com/mailru/easyjson v0.7.6
+github.com/mailru/easyjson/buffer
+github.com/mailru/easyjson/jlexer
+github.com/mailru/easyjson/jwriter
 # github.com/mattn/go-isatty v0.0.12
 github.com/mattn/go-isatty
 # github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
@@ -63,7 +86,13 @@ github.com/pmezard/go-difflib/difflib
 github.com/robfig/cron/v3
 # github.com/stretchr/testify v1.6.1
 github.com/stretchr/testify/assert
-# github.com/ugorji/go/codec v1.1.7
+# github.com/swaggo/files v0.0.0-20190704085106-630677cd5c14
+github.com/swaggo/files
+# github.com/swaggo/gin-swagger v1.3.0
+github.com/swaggo/gin-swagger
+# github.com/swaggo/swag v1.6.7
+github.com/swaggo/swag
+# github.com/ugorji/go/codec v1.1.13
 github.com/ugorji/go/codec
 # go.uber.org/atomic v1.6.0
 go.uber.org/atomic
@@ -76,14 +105,31 @@ go.uber.org/zap/internal/bufferpool
 go.uber.org/zap/internal/color
 go.uber.org/zap/internal/exit
 go.uber.org/zap/zapcore
-# golang.org/x/crypto v0.0.0-20191205180655-e7c4368fe9dd
+# golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9
 golang.org/x/crypto/bcrypt
 golang.org/x/crypto/blowfish
-# golang.org/x/sys v0.0.0-20200116001909-b77594299b42
+# golang.org/x/net v0.0.0-20210119194325-5f4716e94777
+golang.org/x/net/idna
+golang.org/x/net/webdav
+golang.org/x/net/webdav/internal/xml
+# golang.org/x/sys v0.0.0-20210124154548-22da62e12c0c
+golang.org/x/sys/execabs
+golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/unix
+# golang.org/x/text v0.3.5
+golang.org/x/text/secure/bidirule
+golang.org/x/text/transform
+golang.org/x/text/unicode/bidi
+golang.org/x/text/unicode/norm
+golang.org/x/text/width
+# golang.org/x/tools v0.1.0
+golang.org/x/tools/go/ast/astutil
+golang.org/x/tools/go/buildutil
+golang.org/x/tools/go/internal/cgo
+golang.org/x/tools/go/loader
 # gopkg.in/go-playground/validator.v9 v9.31.0
 gopkg.in/go-playground/validator.v9
-# gopkg.in/yaml.v2 v2.2.4
+# gopkg.in/yaml.v2 v2.4.0
 gopkg.in/yaml.v2
-# gopkg.in/yaml.v3 v3.0.0-20200603094226-e3079894b1e8
+# gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776
 gopkg.in/yaml.v3

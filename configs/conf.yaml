@@ -4,7 +4,7 @@ server:
 session_secret: "setOnProducation"
 gin_mode: "debug"
 log_level: "debug"
-mysql_dsn: "root:123456@tcp(172.17.0.3:3306)/gingo?charset=utf8mb4&parseTime=True&loc=Local"
+mysql_dsn: "root:123456@tcp(127.0.0.1:3306)/gingo?charset=utf8mb4&parseTime=True&loc=Local"
 redis:
   addr: "127.0.0.1:6379"
   pass: "123456"

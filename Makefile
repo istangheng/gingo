@@ -33,3 +33,6 @@ coverage: test
 
 analyze: coverage
 	sonar-scanner -X
+
+doc:
+	swag init -g cmd/main.go

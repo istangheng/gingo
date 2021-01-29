@@ -9,7 +9,7 @@ import (
 )
 
 // Register 用户注册
-func Register(user model.User) (token string, err error) {
+func Register(user request.RegisterRequest) (token string, err error) {
 	db := initialize.DB
 	// 数据验证
 	if len(user.Telephone) != 11 {
@@ -36,11 +36,14 @@ func Register(user model.User) (token string, err error) {
 	if err != nil {
 		return "", err
 	}
-	user.Password = hashPassword
-	db.Create(&user)
+	var u model.User
+	u.Name = user.Name
+	u.Telephone = user.Telephone
+	u.Password = hashPassword
+	db.Create(&u)
 
 	// 发放token
-	token, err = tools.ReleaseToken(user)
+	token, err = tools.ReleaseToken(u)
 	if err != nil {
 		return "", errors.New("系统异常")
 	}

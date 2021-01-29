@@ -3,7 +3,6 @@ package test
 import (
 	"fmt"
 	"gingo/initialize"
-	"gingo/model"
 	"gingo/model/request"
 )
 
@@ -18,7 +17,7 @@ func flushTable(table string) error {
 	return db.Exec(sql).Error
 }
 
-var testUser1 = model.User{
+var testUser1 = request.RegisterRequest{
 	Name:      "Name1",
 	Telephone: "11111111111",
 	Password:  "Password1",

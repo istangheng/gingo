@@ -2,8 +2,9 @@ package test
 
 import (
 	"gingo/service"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestRegister(t *testing.T) {
